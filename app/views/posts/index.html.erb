@@ -1,3 +1,14 @@
+<% if user_signed_in? %>
+  <h1>Welcome back, <%= current_user.name %>!</h1>
+  <%= link_to "Create post", new_post_path %>
+  <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+<% else %>
+  <h1>Welcome to the Clubhouse</h1>
+  <p>Join us and share your thoughts with fellow members.</p>
+  <%= link_to "Sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
+<h2>Latest Posts</h2>
 <ul>
   <% @posts.each do |post| %>
     <li>
